@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # This project has been archived, please move to a new version dvadmin3: https://github.com/huge-dream/django-vue3-admin
 # This project has been archived, please move to a new version dvadmin3: https://github.com/huge-dream/django-vue3-admin
 # This project has been archived, please move to a new version dvadmin3: https://github.com/huge-dream/django-vue3-admin
@@ -229,3 +230,6 @@ docker-compose up -d --build
 
 ![image-13](https://foruda.gitee.com/images/1681118527820910716/43a7c660_5074988.png)
 
+=======
+# djangoAndVuejsproject
+>>>>>>> 0065cff575fac4291f64a24e315c4e16c0c39500
