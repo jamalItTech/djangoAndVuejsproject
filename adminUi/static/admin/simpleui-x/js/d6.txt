@@ -1,0 +1,112 @@
+نعم، التصميم المقترح يدعم تخصيصات ديناميكية كاملة للحوار، ويتيح لك التحكم في الإجراءات والسيناريوهات المخصصة. سأوضح كيف يمكن تحقيق ذلك:
+
+### 1. **تخصيص الحوارات:**
+
+يمكنك تخصيص الحوارات بشكل ديناميكي من خلال تمرير دوال وأحداث مخصصة إلى كل حوار. هذا يتيح لك إضافة أكشنات جديدة وتغيير السيناريوهات كما تريد.
+
+### 2. **إضافة وإدارة الأكشنات:**
+
+يمكنك تمرير دوال مخصصة مثل `onOpen`, `onClose`, و`onSave` للحوار. يمكن لهذه الدوال تنفيذ أكشنات معينة بناءً على السيناريوهات المختلفة.
+
+### 3. **إضافة سيناريوهات جديدة:**
+
+من خلال تصميم الحوار ليدعم تخصيصات متعددة، يمكنك إضافة سيناريوهات جديدة حسب الحاجة. يمكنك التعامل مع كل سيناريو بشكل منفصل من خلال التفاعل مع الخصائص والدوال المخصصة للحوار.
+
+### تحسينات على المكون:
+
+- **تخصيص الأكشنات:**
+
+  يمكنك تخصيص الأكشنات التي يتم تنفيذها عند فتح الحوار، إغلاقه، أو حفظه. 
+
+  ```javascript
+  openDialog(config) {
+    const dialogId = `dialog-${Date.now()}-${Math.random()}`;
+    const zIndex = 2000 + this.dialogStack.length * 10; // إدارة z-index
+
+    const newDialog = {
+      id: dialogId,
+      ...config,
+      zIndex,
+    };
+
+    this.dialogStack.push(newDialog);
+
+    this.$nextTick(() => {
+      this.adjustDialogSize(dialogId);
+      if (config.onOpen) config.onOpen();
+    });
+  },
+  ```
+
+- **إضافة سيناريوهات جديدة:**
+
+  يمكنك تعديل المكون لتلبية سيناريوهات جديدة بناءً على البيانات التي تمررها.
+
+  ```javascript
+  handleClose(dialogId) {
+    const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+    if (dialogIndex !== -1) {
+      if (this.dialogStack[dialogIndex].onClose) this.dialogStack[dialogIndex].onClose();
+      this.dialogStack.splice(dialogIndex, 1);
+    }
+  },
+  ```
+
+- **إدارة الأحجام بشكل ديناميكي:**
+
+  يمكنك تحسين `adjustDialogSize` ليتعامل مع كافة حالات المحتوى بشكل ديناميكي.
+
+  ```javascript
+  adjustDialogSize(dialogId) {
+    const index = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+    const iframe = this.$refs.contentIframe[index];
+    if (!iframe) return;
+
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    const contentHeight = iframeDocument.body.scrollHeight;
+    const contentWidth = iframeDocument.body.scrollWidth;
+    const dialog = this.dialogStack[index];
+
+    dialog.dialogWidth = `${contentWidth}px`;
+    dialog.dialogHeight = `${contentHeight}px`;
+
+    this.$set(this.dialogStack, index, dialog); // تحديث الواجهة
+  },
+  ```
+
+### أمثلة على السيناريوهات المخصصة:
+
+- **فتح حوار مع محتوى معين:**
+
+  ```javascript
+  this.openDialog({
+    title: 'محتوى ديناميكي',
+    url: 'https://example.com',
+    customClass: 'custom-class',
+    dialogWidth: '70vw',
+    dialogHeight: '70vh',
+    onOpen: () => { console.log('Dialog opened with custom content'); },
+    onClose: () => { console.log('Dialog closed with custom content'); },
+    onSave: () => { console.log('Saving data from dialog'); },
+  });
+  ```
+
+- **إغلاق الحوار بناءً على شروط معينة:**
+
+  ```javascript
+  handleClose(dialogId) {
+    const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+    if (dialogIndex !== -1) {
+      if (this.dialogStack[dialogIndex].shouldConfirmClose) {
+        this.confirmClose(dialogId);
+      } else {
+        if (this.dialogStack[dialogIndex].onClose) this.dialogStack[dialogIndex].onClose();
+        this.dialogStack.splice(dialogIndex, 1);
+      }
+    }
+  },
+  ```
+
+### استنتاج:
+
+من خلال هذا التصميم، يمكنك التحكم بشكل كامل في جميع جوانب الحوارات، من تخصيص الأكشنات إلى إدارة الأحجام والسيناريوهات. يمكن توسيع هذا التصميم لتلبية احتياجاتك الخاصة في أنظمة ERP من خلال إضافة أو تعديل الوظائف حسب الحاجة.

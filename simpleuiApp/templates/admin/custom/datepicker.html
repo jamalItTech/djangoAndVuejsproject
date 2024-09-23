@@ -1,0 +1,11 @@
+{% load static %}
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<!-- Include Element UI JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<el-date-picker
+    v-model="value"
+    :type="{{ widget.picker_type }}"
+    name="{{ widget.name }}"
+    v-bind="widget.attrs"
+></el-date-picker>

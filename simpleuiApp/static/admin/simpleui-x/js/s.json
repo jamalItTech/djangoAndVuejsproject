@@ -1,0 +1,26 @@
+ [
+    {
+      "name": "Groups",
+      "icon": "fas fa-users-cog",
+      "url": "/admin/auth/group/",
+      "moduls": [
+        {
+          "name": "المشتريات",
+          "icon": "fas fa-box",
+          "screens": [
+            {
+              "name": "المنتجات",
+              "icon": "fas fa-box",
+              "url": "/admin/product/"
+            },
+            {
+              "name": "فاتورة المشتريات",
+              "icon": "fas fa-receipt",
+              "url": "/admin/invoice/"
+            }
+          ]
+        }
+      ]
+    }
+  ];
+  

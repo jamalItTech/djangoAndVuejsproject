@@ -1,0 +1,32 @@
+{% load static %}
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<!-- Include Element UI JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+alert("Ddddddddddd")
+    console.log("dddddddd","{{widget|safe}}")
+</script>
+<el-date-picker
+    v-model="{{ widget.attrs.v_model }}"
+    :type="{{ widget.picker_type }}"
+    :readonly="{{ widget.attrs.readonly }}"
+    :disabled="{{ widget.attrs.disabled }}"
+    :editable="{{ widget.attrs.editable }}"
+    :clearable="{{ widget.attrs.clearable }}"
+    :size="{{ widget.attrs.size }}"
+    placeholder="{{ widget.attrs.placeholder }}"
+    start-placeholder="{{ widget.attrs.start_placeholder }}"
+    end-placeholder="{{ widget.attrs.end_placeholder }}"
+    :arrow-control="{{ widget.attrs.arrow_control }}"
+    format="{{ widget.attrs.format }}"
+    popper-class="{{ widget.attrs.popper_class }}"
+    range-separator="{{ widget.attrs.range_separator }}"
+    :default-value="{{ widget.attrs.default_value }}"
+    :default-time="{{ widget.default_time | default('null') }}"
+    value-format="{{ widget.attrs.value_format }}"
+    :date-format="{{ widget.attrs.date_format }}"
+    :time-format="{{ widget.attrs.time_format }}"
+    id="{{ widget.attrs.id }}"
+    v-bind="widget.attrs"
+></el-date-picker>

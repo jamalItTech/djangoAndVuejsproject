@@ -1,0 +1,146 @@
+لتحقيق حوارات ذكية وقابلة للتخصيص بشكل كامل، يمكننا تصميم نظام حوارات مرن وقوي يلبي جميع السيناريوهات والاحتياجات. النظام سيكون مبنيًا على Vue.js مع إمكانيات واسعة للتحكم في الحوارات، تخصيصها، وتمرير دوال إليها.
+
+### تصميم حوار ذكي وقابل للتخصيص:
+
+1. **نظام حوار مرن مع خصائص متعددة:**
+
+   نقوم بإنشاء مكون `Dialog` في Vue.js يكون قادرًا على استيعاب مجموعة متنوعة من السيناريوهات ويتيح تخصيصًا مرنًا لكل حوار.
+
+2. **إدارة حوارات متعددة (Stacking):**
+
+   يمكن إدارة الحوارات كـ "Stack" بحيث تكون الحوارات الجديدة دائمًا فوق الحوارات القديمة.
+
+3. **تخصيص الحوارات وتمرير دوال:**
+
+   يتم تمرير دوال مثل `onOpen`, `onClose`, و`onSave` لتوفير مرونة أكبر في التعامل مع الأحداث داخل الحوارات.
+
+### 1. **تعريف مكون الحوار الأساسي**
+
+```vue
+<template>
+  <el-dialog
+    v-for="(dialog, index) in dialogStack"
+    :key="dialog.id"
+    :title="dialog.title"
+    :visible.sync="dialog.show"
+    :custom-class="dialog.customClass"
+    :style="{ zIndex: dialog.zIndex }"
+    :width="dialog.dialogWidth"
+    :height="dialog.dialogHeight"
+    :before-close="() => handleClose(dialog.id)"
+    @click.native="bringToFront(dialog.id)"
+  >
+    <iframe
+      v-if="dialog.url"
+      ref="contentIframe"
+      :src="dialog.url"
+      frameborder="0"
+    ></iframe>
+    <template v-slot:footer>
+      <el-button @click="() => handleClose(dialog.id)">إلغاء</el-button>
+      <el-button type="primary" @click="() => handleSave(dialog.id)">حفظ</el-button>
+    </template>
+  </el-dialog>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      dialogStack: [], // Stack للحفاظ على الحوارات المفتوحة
+    };
+  },
+  methods: {
+    openDialog(config) {
+      const dialogId = `dialog-${Date.now()}-${Math.random()}`;
+      const zIndex = 2000 + this.dialogStack.length * 10; // إدارة z-index
+
+      const newDialog = {
+        id: dialogId,
+        ...config,
+        zIndex,
+      };
+
+      // إضافة الحوار إلى الـ stack
+      this.dialogStack.push(newDialog);
+
+      // تحديث الحجم بعد التفاعل
+      this.$nextTick(() => {
+        this.adjustDialogSize(dialogId);
+        if (config.onOpen) config.onOpen();
+      });
+    },
+    bringToFront(dialogId) {
+      const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+      if (dialogIndex !== -1) {
+        const maxZIndex = Math.max(...this.dialogStack.map(dialog => dialog.zIndex));
+        this.dialogStack[dialogIndex].zIndex = maxZIndex + 10;
+        this.$set(this.dialogStack, dialogIndex, this.dialogStack[dialogIndex]); // تحديث الواجهة
+      }
+    },
+    handleClose(dialogId) {
+      const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+      if (dialogIndex !== -1) {
+        if (this.dialogStack[dialogIndex].onClose) this.dialogStack[dialogIndex].onClose();
+        this.dialogStack.splice(dialogIndex, 1);
+      }
+    },
+    handleSave(dialogId) {
+      const dialog = this.dialogStack.find(dialog => dialog.id === dialogId);
+      if (dialog && dialog.onSave) dialog.onSave();
+    },
+    adjustDialogSize(dialogId) {
+      const index = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+      const iframe = this.$refs.contentIframe[index];
+      if (!iframe) return;
+
+      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+      const contentHeight = iframeDocument.body.scrollHeight;
+      const contentWidth = iframeDocument.body.scrollWidth;
+      const dialog = this.dialogStack[index];
+
+      dialog.dialogWidth = `${contentWidth}px`;
+      dialog.dialogHeight = `${contentHeight}px`;
+
+      this.$set(this.dialogStack, index, dialog); // تحديث الواجهة
+    },
+  },
+};
+</script>
+
+<style scoped>
+/* إضافة أنماط مخصصة إذا لزم الأمر */
+</style>
+```
+
+### 2. **استخدام المكون مع تخصيصات:**
+
+يمكنك استخدام المكون لفتح الحوارات مع تخصيصات محددة، مثل تخصيص الدوال للفتح والإغلاق والحفظ.
+
+```javascript
+this.$refs.dialogComponent.openDialog({
+  title: 'محادثة جديدة',
+  url: 'https://example.com',
+  customClass: 'custom-class',
+  dialogWidth: '70vw',
+  dialogHeight: '70vh',
+  onOpen: () => { console.log('Dialog opened'); },
+  onClose: () => { console.log('Dialog closed'); },
+  onSave: () => { 
+    // Handle save logic
+    console.log('Dialog saved'); 
+  },
+});
+```
+
+### 3. **إدارة التحريك:**
+
+يمكنك استخدام مكتبات خارجية أو إضافة ميزات تحريك للحوار بشكل يدوي لتوفير تحكم كامل في مكانية الحوار.
+
+### 4. **توسيع المكونات للتخصيص:**
+
+إذا كنت تحتاج إلى تخصيص إضافي، يمكنك توسيع المكونات لتلبية احتياجات محددة، مثل إضافة عناصر واجهة المستخدم الخاصة بك، أو التفاعل مع الأحداث.
+
+### الخلاصة:
+
+من خلال اتباع هذه الخطوات، ستتمكن من إنشاء نظام حوارات ذكي وقابل للتخصيص يتوافق مع احتياجات تطبيقات ERP. هذا التصميم يتيح لك إدارة الحوارات المتعددة بكفاءة، تخصيص التفاعل مع الأحداث، والتحكم في أحجام الحوارات ديناميكيًا.

@@ -1,0 +1,298 @@
+[
+    {
+        "id": "0",
+        "index": "1",
+        "eid": "1",
+        "name": "Home",
+        "icon": "fas fa-home"
+    },
+    {
+        "name": "Groups",
+        "icon": "fas fa-users-cog",
+        "url": "/admin/auth/group/",
+        "addUrl": "/admin/auth/group/add/",
+        "breadcrumbs": [
+            {
+                "name": "Authentication and Authorization",
+                "icon": "fas fa-shield-alt"
+            },
+            {
+                "name": "Groups",
+                "icon": "fas fa-users-cog"
+            }
+        ],
+        "eid": 1002
+    },
+    {
+        "name": "Users",
+        "icon": "far fa-user",
+        "url": "/admin/auth/user/",
+        "addUrl": "/admin/auth/user/add/",
+        "breadcrumbs": [
+            {
+                "name": "Authentication and Authorization",
+                "icon": "fas fa-shield-alt"
+            },
+            {
+                "name": "Users",
+                "icon": "far fa-user"
+            }
+        ],
+        "eid": 1003
+    },
+    {
+        "name": "Course",
+        "icon": "far fa-circle",
+        "url": "/admin/crispyapp/course/",
+        "addUrl": "/admin/crispyapp/course/add/",
+        "breadcrumbs": [
+            {
+                "name": "Crispyapp",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Course",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1005
+    },
+    {
+        "name": "Grades",
+        "icon": "fas fa-ad",
+        "url": "/admin/crispyapp/grade/",
+        "addUrl": "/admin/crispyapp/grade/add/",
+        "breadcrumbs": [
+            {
+                "name": "Crispyapp",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Grades",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1006
+    },
+    {
+        "name": "People",
+        "icon": "far fa-user",
+        "url": "/admin/crispyapp/person/",
+        "addUrl": "/admin/crispyapp/person/add/",
+        "breadcrumbs": [
+            {
+                "name": "Crispyapp",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "People",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1007
+    },
+    {
+        "name": "Authors",
+        "icon": "far fa-circle",
+        "url": "/admin/polls/author/",
+        "addUrl": "/admin/polls/author/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Authors",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1009
+    },
+    {
+        "name": "Blog posts",
+        "icon": "far fa-bookmark",
+        "url": "/admin/polls/blogpost/",
+        "addUrl": "/admin/polls/blogpost/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Blog posts",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1010
+    },
+    {
+        "name": "Books",
+        "icon": "far fa-circle",
+        "url": "/admin/polls/book/",
+        "addUrl": "/admin/polls/book/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Books",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1011
+    },
+    {
+        "name": "Configs",
+        "icon": "fa-solid fa-cog",
+        "url": "/admin/polls/config/",
+        "addUrl": "/admin/polls/config/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Configs",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1012
+    },
+    {
+        "name": "Courses",
+        "icon": "far fa-circle",
+        "url": "/admin/polls/course/",
+        "addUrl": "/admin/polls/course/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Courses",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1013
+    },
+    {
+        "name": "Documents",
+        "icon": "fa-solid fa-hand-point-right",
+        "url": "/admin/polls/document/",
+        "addUrl": "/admin/polls/document/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Documents",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1014
+    },
+    {
+        "name": "Events",
+        "icon": "fa-brands fa-typescript",
+        "url": "/admin/polls/event/",
+        "addUrl": "/admin/polls/event/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Events",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1015
+    },
+    {
+        "name": "Orders",
+        "icon": "fas fa-shopping-bag",
+        "url": "/admin/polls/order/",
+        "addUrl": "/admin/polls/order/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Orders",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1016
+    },
+    {
+        "name": "Persons",
+        "icon": "far fa-circle",
+        "url": "/admin/polls/person/",
+        "addUrl": "/admin/polls/person/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Persons",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1017
+    },
+    {
+        "name": "Products",
+        "icon": "fa-brands fa-typescript",
+        "url": "/admin/polls/product/",
+        "addUrl": "/admin/polls/product/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Products",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1018
+    },
+    {
+        "name": "Profiles",
+        "icon": "fa-solid fa-file",
+        "url": "/admin/polls/profile/",
+        "addUrl": "/admin/polls/profile/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Profiles",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1019
+    },
+    {
+        "name": "Students",
+        "icon": "far fa-user",
+        "url": "/admin/polls/student/",
+        "addUrl": "/admin/polls/student/add/",
+        "breadcrumbs": [
+            {
+                "name": "Polls",
+                "icon": "far fa-circle"
+            },
+            {
+                "name": "Students",
+                "icon": "far fa-circle"
+            }
+        ],
+        "eid": 1020
+    }
+]

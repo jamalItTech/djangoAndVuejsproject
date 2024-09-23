@@ -1,0 +1,69 @@
+{% load i18n static %}
+<div class="related-widget-wrapper" {% if not model_has_limit_choices_to %}data-model-ref="{{ model }}"{% endif %}>
+    {{ rendered_widget }}
+    {% block links %}
+        {% spaceless %}
+        {% if not is_hidden %}
+        {% if can_change_related %}
+        <a class="related-widget-wrapper-link change-related" id="change_id_{{ name }}"
+            data-action="change"
+            data-href-template="{{ change_related_template_url }}?{{ url_params }}"
+            title="{% blocktranslate %}Change selected {{ model }}{% endblocktranslate %}">
+            <img src="{% static 'admin/img/icon-changelink.svg' %}" alt="" width="20" height="20">
+        </a>
+        {% endif %}
+        {% if can_add_related %}
+        <a class="related-widget-wrapper-link add-related" id="add_id_{{ name }}"
+            data-action="add"
+            data-href-template="{{ add_related_url }}?{{ url_params }}"
+            title="{% blocktranslate %}Add another {{ model }}{% endblocktranslate %}">
+            <img src="{% static 'admin/img/icon-addlink.svg' %}" alt="" width="20" height="20">
+        </a>
+        {% endif %}
+        {% if can_delete_related %}
+        <a class="related-widget-wrapper-link delete-related" id="delete_id_{{ name }}"
+            data-action="delete"
+            data-href-template="{{ delete_related_template_url }}?{{ url_params }}"
+            title="{% blocktranslate %}Delete selected {{ model }}{% endblocktranslate %}">
+            <img src="{% static 'admin/img/icon-deletelink.svg' %}" alt="" width="20" height="20">
+        </a>
+        {% endif %}
+        {% if can_view_related %}
+          <a class="related-widget-wrapper-link view-related" id="view_id_{{ name }}"
+             data-action="view"
+             data-href-template="{{ change_related_template_url }}?{{ view_related_url_params }}"
+             title="{% blocktranslate %}View selected {{ model }}{% endblocktranslate %}">
+            <img src="{% static 'admin/img/icon-viewlink.svg' %}" alt="" width="20" height="20">
+          </a>
+        {% endif %}
+        {% endif %}
+        {% endspaceless %}
+    {% endblock %}
+</div>
+
+<script>
+    // Ensure the document is fully loaded before adding event listeners
+    document.addEventListener('DOMContentLoaded', function () {
+        // Add event listeners to all links with the 'related-widget-wrapper-link' class
+        document.querySelectorAll('.related-widget-wrapper-link').forEach(function (element) {
+            const action = element.getAttribute('data-action');
+            const url = element.getAttribute('data-url');
+            const name = element.getAttribute('id').split('_')[1]; // Extract name from id
+
+            // Check if action is specified and is valid
+            if (action && ['add', 'change', 'view', 'delete'].includes(action)) {
+                element.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the default link behavior
+
+                    // Resolve the URL template by replacing any placeholders
+                    const resolvedUrl = url;
+
+                    // Call the function to open the dialog with the appropriate parameters
+                    if (window.app && typeof window.app.openDialog === 'function') {
+                        window.app.openDialog(resolvedUrl, name, action);
+                    }
+                });
+            }
+        });
+    });
+</script>

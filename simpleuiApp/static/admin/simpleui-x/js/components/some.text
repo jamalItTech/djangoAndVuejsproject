@@ -1,0 +1,182 @@
+لاختبار دالة `openDialog` بأنواع مختلفة من البيانات، يمكنك إعداد سيناريوهات متنوعة لإرسال خيارات مختلفة إلى `openDialog` ومعاينة كيفية تعاملها مع كل نوع من المحتوى. سأقدم لك بعض الأمثلة لبيانات مختلفة وكيفية استدعاء `openDialog` بها.
+
+### 1. **اختبار محتوى HTML**
+
+```javascript
+function testHtmlContent() {
+    erpFlexDialog.openDialog({
+        title: 'HTML Content Dialog',
+        contentType: 'html',
+        content: '<p>This is some <strong>HTML</strong> content with <a href="#">a link</a>.</p>',
+        width: '600px',
+        footer: true,
+        footerButtons: [
+            { label: 'Close', action: 'cancel' }
+        ],
+        headerClass: 'html-header-class',
+        contentStyle: { backgroundColor: '#fff', padding: '20px' },
+        headerStyle: { color: '#333' },
+        dialogStyle: { border: '1px solid #ddd' }
+    });
+}
+```
+
+### 2. **اختبار محتوى Iframe**
+
+```javascript
+function testIframeContent() {
+    erpFlexDialog.openDialog({
+        title: 'Iframe Content Dialog',
+        contentType: 'iframe',
+        content: 'https://example.com', // URL of the iframe content
+        width: '800px',
+        footer: true,
+        footerButtons: [
+            { label: 'Reload', action: 'reload' },
+            { label: 'Close', action: 'cancel' }
+        ],
+        headerClass: 'iframe-header-class',
+        contentStyle: { backgroundColor: '#f0f0f0', padding: '10px' },
+        headerStyle: { color: '#555' },
+        dialogStyle: { border: '2px solid #ccc' }
+    });
+}
+```
+
+### 3. **اختبار محتوى نصي**
+
+```javascript
+function testTextContent() {
+    erpFlexDialog.openDialog({
+        title: 'Text Content Dialog',
+        contentType: 'text',
+        content: 'This is a plain text content displayed in the dialog.',
+        width: '500px',
+        footer: true,
+        footerButtons: [
+            { label: 'Ok', action: 'ok' }
+        ],
+        headerClass: 'text-header-class',
+        contentStyle: { backgroundColor: '#e8e8e8', padding: '15px' },
+        headerStyle: { color: '#666' },
+        dialogStyle: { border: '1px solid #bbb' }
+    });
+}
+```
+
+### 4. **اختبار محتوى جدول**
+
+```javascript
+function testTableContent() {
+    erpFlexDialog.openDialog({
+        title: 'Table Content Dialog',
+        contentType: 'table',
+        tableData: [
+            { name: 'Alice', age: 30 },
+            { name: 'Bob', age: 25 }
+        ],
+        tableColumns: [
+            { prop: 'name', label: 'Name', width: '200px' },
+            { prop: 'age', label: 'Age', width: '100px' }
+        ],
+        width: '600px',
+        footer: true,
+        footerButtons: [
+            { label: 'Export', action: 'export' },
+            { label: 'Close', action: 'cancel' }
+        ],
+        headerClass: 'table-header-class',
+        contentStyle: { backgroundColor: '#f9f9f9', padding: '20px' },
+        headerStyle: { color: '#444' },
+        dialogStyle: { border: '1px solid #aaa' }
+    });
+}
+```
+
+### 5. **اختبار محتوى نموذج (Form)**
+
+```javascript
+function testFormContent() {
+    erpFlexDialog.openDialog({
+        title: 'Form Content Dialog',
+        contentType: 'form',
+        formModel: {
+            username: '',
+            password: ''
+        },
+        formRules: {
+            username: [{ required: true, message: 'Username is required', trigger: 'blur' }],
+            password: [{ required: true, message: 'Password is required', trigger: 'blur' }]
+        },
+        formFields: [
+            { label: 'Username', prop: 'username', placeholder: 'Enter your username' },
+            { label: 'Password', prop: 'password', placeholder: 'Enter your password' }
+        ],
+        width: '500px',
+        footer: true,
+        footerButtons: [
+            { label: 'Submit', action: 'submit' },
+            { label: 'Cancel', action: 'cancel' }
+        ],
+        headerClass: 'form-header-class',
+        contentStyle: { backgroundColor: '#f7f7f7', padding: '20px' },
+        headerStyle: { color: '#333' },
+        dialogStyle: { border: '1px solid #ddd' }
+    });
+}
+```
+
+### 6. **اختبار محتوى رسم بياني (Chart)**
+
+```javascript
+function testChartContent() {
+    erpFlexDialog.openDialog({
+        title: 'Chart Content Dialog',
+        contentType: 'chart',
+        chartData: [/* your chart data */],
+        chartOptions: {/* your chart options */},
+        width: '700px',
+        footer: true,
+        footerButtons: [
+            { label: 'Refresh', action: 'refresh' },
+            { label: 'Close', action: 'cancel' }
+        ],
+        headerClass: 'chart-header-class',
+        contentStyle: { backgroundColor: '#ffffff', padding: '20px' },
+        headerStyle: { color: '#333' },
+        dialogStyle: { border: '1px solid #ddd' }
+    });
+}
+```
+
+### 7. **اختبار محتوى ديناميكي**
+
+```javascript
+function testDynamicContent() {
+    erpFlexDialog.openDialog({
+        title: 'Dynamic Content Dialog',
+        contentType: 'dynamic',
+        dynamicComponent: 'your-dynamic-component', // This should be the name of the Vue component
+        dynamicData: {/* data for the dynamic component */},
+        width: '600px',
+        footer: true,
+        footerButtons: [
+            { label: 'Close', action: 'cancel' }
+        ],
+        headerClass: 'dynamic-header-class',
+        contentStyle: { backgroundColor: '#f0f0f0', padding: '20px' },
+        headerStyle: { color: '#666' },
+        dialogStyle: { border: '1px solid #bbb' }
+    });
+}
+```
+
+### كيفية تنفيذ الاختبارات
+
+1. **أضف الكود أعلاه إلى ملف JavaScript** الذي يتم تحميله في تطبيقك، وتأكد من أن الدالة `openDialog` من `erpFlexDialog` متاحة وتعمل بشكل صحيح.
+
+2. **استدعي كل دالة اختبار** من وحدة التحكم في المتصفح (Console) أو من واجهة المستخدم الخاصة بك لتشغيلها ومعاينة النتائج.
+
+3. **تحقق من مظهر الحوار ووظائفه** لضمان عرض كل نوع من المحتوى بشكل صحيح.
+
+بهذه الطريقة، يمكنك التأكد من أن دالة `openDialog` تعمل مع جميع أنواع المحتوى التي تدعمها وتقوم بالتحكم في ظهور وتنسيق المحتوى بشكل صحيح.

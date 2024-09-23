@@ -1,0 +1,11 @@
+/* تأكد من تحميل مكتبة Font Awesome في قالبك */
+.fa {
+    font-family: "Font Awesome 5 Free"; /* تأكد من استخدام مكتبة الأيقونات الصحيحة */
+    font-weight: 900; /* أو 400 حسب الأيقونة */
+}
+
+.action-select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

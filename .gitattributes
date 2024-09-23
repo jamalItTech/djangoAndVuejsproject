@@ -1,0 +1,14 @@
+*.css linguist-language=Python
+*.less linguist-language=Python
+*.js linguist-language=Python
+*.html linguist-language=Python
+* text=auto
+
+# تحويل تلقائي لنهايات الأسطر حسب النظام المستخدم
+* text=auto
+
+# التعامل مع ملفات SCSS و SVG كملفات نصية
+*.scss text
+*.svg text
+*.yml text
+*.json text

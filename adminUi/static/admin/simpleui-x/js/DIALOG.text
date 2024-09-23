@@ -1,0 +1,113 @@
+نعم، يمكنك التحكم في ترتيب ظهور الحوارات الفرعية بالنسبة للحوار الرئيسي وجعلها تظهر فوق الحوار الرئيسي أو تحريكها. للتحكم في ترتيب الحوارات وتحريكها، يمكنك استخدام خصائص مثل `z-index` أو التحكم في التكديس (`stacking`) باستخدام CSS أو JavaScript.
+
+### 1. **التحكم في `z-index` للحوارات**:
+لتحديد ترتيب ظهور الحوارات الفرعية فوق الرئيسية، يمكنك ضبط `z-index` لكل حوار. الحوارات التي تحتوي على `z-index` أعلى ستظهر فوق الحوارات الأخرى.
+
+```javascript
+openDialog(url, name, customClass = '', dialogWidth = '70vw', dialogHeight = '70vh') {
+  const dialogId = `dialog-${Date.now()}-${Math.random()}`;
+  const zIndex = 2000 + this.dialogStack.length * 10; // زيادة قيمة z-index لتكديس الحوارات
+
+  const dialogConfig = {
+    id: dialogId,
+    url,
+    name,
+    show: true,
+    customClass,
+    dialogWidth,
+    dialogHeight,
+    zIndex
+  };
+
+  this.dialogStack.push(dialogConfig);
+
+  this.$nextTick(() => {
+    this.checkContentReady(this.dialogStack.length - 1);
+  });
+}
+```
+
+ثم في قالب الـ Vue:
+
+```html
+<el-dialog
+  v-for="(dialog, index) in dialogStack"
+  :key="dialog.id"
+  :title="dialog.name"
+  :visible.sync="dialog.show"
+  :custom-class="dialog.customClass"
+  :style="{ zIndex: dialog.zIndex }"  <!-- تحديد z-index للحوار -->
+  :width="dialog.dialogWidth"
+  :height="dialog.dialogHeight"
+  :before-close="() => closeDialog(dialog.id)"
+>
+  <iframe
+    ref="contentIframe"
+    :src="dialog.url"
+    frameborder="0"
+  ></iframe>
+  <template v-slot:footer>
+    <el-button @click="() => closeDialog(dialog.id)">Cancel</el-button>
+    <el-button type="primary" @click="handleSave">Save</el-button>
+  </template>
+</el-dialog>
+```
+
+### 2. **تحريك الحوارات باستخدام ميزة السحب (`draggable`)**:
+يمكنك جعل الحوارات قابلة للسحب لتتيح للمستخدمين تحريكها بحرية.
+
+```html
+<el-dialog
+  v-for="(dialog, index) in dialogStack"
+  :key="dialog.id"
+  :title="dialog.name"
+  :visible.sync="dialog.show"
+  :custom-class="dialog.customClass"
+  :style="{ zIndex: dialog.zIndex }"
+  :width="dialog.dialogWidth"
+  :height="dialog.dialogHeight"
+  :before-close="() => closeDialog(dialog.id)"
+  :draggable="true"  <!-- جعل الحوار قابل للسحب -->
+>
+  <!-- محتوى الحوار -->
+</el-dialog>
+```
+
+### 3. **إحضار الحوار الأمامي عند النقر عليه**:
+يمكنك جعل الحوار النشط يظهر أمام الحوارات الأخرى عند النقر عليه. هذا يمكن تحقيقه عن طريق تغيير `z-index` عند التفاعل مع الحوار.
+
+```javascript
+bringToFront(dialogId) {
+  const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+  if (dialogIndex !== -1) {
+    const maxZIndex = Math.max(...this.dialogStack.map(dialog => dialog.zIndex));
+    this.dialogStack[dialogIndex].zIndex = maxZIndex + 10;
+  }
+}
+```
+
+ثم تربط هذه الدالة بـ `click`:
+
+```html
+<el-dialog
+  v-for="(dialog, index) in dialogStack"
+  :key="dialog.id"
+  :title="dialog.name"
+  :visible.sync="dialog.show"
+  :custom-class="dialog.customClass"
+  :style="{ zIndex: dialog.zIndex }"
+  :width="dialog.dialogWidth"
+  :height="dialog.dialogHeight"
+  :before-close="() => closeDialog(dialog.id)"
+  @click="bringToFront(dialog.id)"  <!-- إحضار الحوار الأمامي عند النقر -->
+  :draggable="true"
+>
+  <!-- محتوى الحوار -->
+</el-dialog>
+```
+
+### 4. **ملاحظة حول `z-index` و CSS**:
+تأكد من أن `z-index` يعمل بشكل صحيح عن طريق ضبط الـ CSS، قد تحتاج إلى التأكد من عدم وجود خصائص `position: static` في `el-dialog` أو العناصر المحيطة بها. إذا كانت الحوارات لا تتحرك بشكل صحيح، تحقق من الهيكل العام لـ CSS وضبط `position` إلى `relative`, `absolute`, أو `fixed` حسب الحاجة.
+
+### الخلاصة:
+باستخدام هذه الطرق، يمكنك التحكم في ترتيب ظهور الحوارات الفرعية، وجعلها قابلة للتحريك، وجعل الحوارات الأمامية تظهر عند النقر عليها. هذه التقنيات ستساعدك في إنشاء واجهة مستخدم مرنة وقابلة للتخصيص حسب احتياجات المستخدم.

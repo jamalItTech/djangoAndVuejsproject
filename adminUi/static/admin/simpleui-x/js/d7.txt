@@ -1,0 +1,141 @@
+فهمت الآن أنك تريد تصميم حوارات (Dialogs) تكون قابلة للتخصيص بشكل كامل من قبل المستخدمين، بحيث يمكنهم إرسال أكشنات وسيناريوهات جديدة إليها أو القيام بعملية override للسيناريوهات الموجودة. سأقدم لك طريقة مرنة لتحقيق هذا.
+
+### تصميم الحوارات القابلة للتخصيص
+
+1. **تعريف الحوارات مع خيارات تخصيص:**
+
+   يمكنك تعريف الحوارات بحيث تكون القيم والوظائف التي يتم تمريرها إليها ديناميكية، مما يتيح للمستخدمين إرسال أكشنات وسيناريوهات جديدة.
+
+   ```javascript
+   openDialog({
+     id = `dialog-${Date.now()}`,
+     title = 'Dialog Title',
+     url = '',
+     customClass = '',
+     dialogWidth = '70vw',
+     dialogHeight = '70vh',
+     onOpen = () => {},
+     onClose = () => {},
+     onSave = () => {},
+     onCancel = () => {},
+     ...rest // باقي الإعدادات المخصصة
+   }) {
+     const zIndex = 2000 + this.dialogStack.length * 10; // إدارة z-index
+     
+     const newDialog = {
+       id,
+       title,
+       url,
+       customClass,
+       dialogWidth,
+       dialogHeight,
+       onOpen,
+       onClose,
+       onSave,
+       onCancel,
+       ...rest,
+       zIndex,
+       show: true
+     };
+     
+     this.dialogStack.push(newDialog);
+     
+     this.$nextTick(() => {
+       this.adjustDialogSize(id);
+       if (newDialog.onOpen) newDialog.onOpen();
+     });
+   }
+   ```
+
+2. **تعامل مع الإجراءات المخصصة:**
+
+   يمكنك استخدام دوال مخصصة للتعامل مع الأحداث المختلفة مثل الإغلاق والحفظ.
+
+   ```javascript
+   handleClose(dialogId) {
+     const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+     if (dialogIndex !== -1) {
+       const dialog = this.dialogStack[dialogIndex];
+       if (dialog.onClose) dialog.onClose();
+       this.dialogStack.splice(dialogIndex, 1);
+     }
+   }
+
+   handleSave(dialogId) {
+     const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+     if (dialogIndex !== -1) {
+       const dialog = this.dialogStack[dialogIndex];
+       if (dialog.onSave) dialog.onSave();
+       this.handleClose(dialogId);
+     }
+   }
+
+   handleCancel(dialogId) {
+     const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+     if (dialogIndex !== -1) {
+       const dialog = this.dialogStack[dialogIndex];
+       if (dialog.onCancel) dialog.onCancel();
+       this.handleClose(dialogId);
+     }
+   }
+   ```
+
+3. **تخصيص الحوارات في واجهة المستخدم:**
+
+   استخدم الحوارات في الواجهة بما يتوافق مع تخصيصات المستخدم.
+
+   ```html
+   <el-dialog
+     v-for="dialog in dialogStack"
+     :key="dialog.id"
+     :title="dialog.title"
+     :visible.sync="dialog.show"
+     :before-close="() => handleClose(dialog.id)"
+     :custom-class="dialog.customClass"
+     :width="dialog.dialogWidth"
+     :height="dialog.dialogHeight"
+   >
+     <iframe
+       ref="contentIframe"
+       :src="dialog.url"
+       frameborder="0"
+     ></iframe>
+     <template v-slot:footer>
+       <el-button @click="() => handleCancel(dialog.id)">Cancel</el-button>
+       <el-button type="primary" @click="() => handleSave(dialog.id)">Save</el-button>
+     </template>
+   </el-dialog>
+   ```
+
+### مثال على كيفية الاستخدام:
+
+**فتح حوار مع تخصيص دوال:**
+
+```javascript
+this.openDialog({
+  title: 'Custom Dialog',
+  url: 'https://example.com',
+  customClass: 'custom-class',
+  onOpen: () => { console.log('Dialog opened with custom actions'); },
+  onClose: () => { console.log('Dialog closed with custom actions'); },
+  onSave: () => { console.log('Saving data from custom dialog'); },
+  onCancel: () => { console.log('Cancelled custom dialog'); }
+});
+```
+
+### دعم السيناريوهات المتقدمة:
+
+1. **تمرير سيناريوهات إضافية:**
+
+   يمكنك تمرير سيناريوهات إضافية عبر `...rest`، مما يتيح لك دعم سيناريوهات متنوعة.
+
+2. **التخصيص الديناميكي:**
+
+   قم بتحديث الواجهة والتعامل مع التخصيصات الديناميكية بناءً على البيانات التي تمررها.
+
+**ملاحظات:**
+
+- **التخصيصات الديناميكية**: يمكن تعديل وإضافة أكشنات جديدة من قبل المستخدمين، مما يوفر مرونة كبيرة.
+- **التوسع**: يمكنك توسيع الوظائف لتلبية الاحتياجات المختلفة، مثل إدخال بيانات من نماذج، التعامل مع الأحداث الخاصة، إلخ.
+
+بهذا الشكل، يكون لديك نظام حوارات ديناميكي ومخصص يمكن تعديله وتوسيعه ليتناسب مع متطلبات الأنظمة الكبيرة مثل أنظمة ERP.

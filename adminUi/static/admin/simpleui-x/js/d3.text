@@ -1,0 +1,127 @@
+نعم، هناك طرق متقدمة للتحكم في `dialogStack`، التي تتضمن إدارة الحالة بشكل أكثر مرونة والتعامل مع سيناريوهات معقدة مثل إغلاق الحوارات المتداخلة، تحديد حوار رئيسي وحوارات فرعية، أو حتى التعامل مع حوارات متداخلة بطرق أكثر تعقيدًا. إليك بعض الأفكار والطرق المتقدمة التي يمكنك استخدامها:
+
+### 1. **إضافة معرف فريد لكل حوار**:
+لضمان سهولة تتبع وإدارة الحوارات، يمكنك تعيين معرف فريد (`id`) لكل حوار عند إضافته إلى `dialogStack`. سيسهل هذا الأمر تحديد الحوار وإجراء العمليات عليه مثل الإغلاق أو التحديث.
+
+```javascript
+openDialog(url, name, customClass = '') {
+  const viewportWidth = document.documentElement.clientWidth;
+
+  if (viewportWidth > 800) {
+    const dialogId = `dialog-${Date.now()}-${Math.random()}`;  // تعيين معرف فريد
+
+    const dialogConfig = {
+      id: dialogId,
+      url,
+      name,
+      show: true,
+      customClass,
+      parentId: this.dialogStack.length > 0 ? this.dialogStack[this.dialogStack.length - 1].id : null // تعيين معرف الحوار الأب إذا كان موجودًا
+    };
+
+    this.dialogStack.push(dialogConfig);
+
+    this.$nextTick(() => {
+      this.checkContentReady(this.dialogStack.length - 1);
+    });
+  } else {
+    this.openInTab({ url, name });
+  }
+},
+```
+
+### 2. **إغلاق حوار معين**:
+يمكنك إنشاء دالة لإغلاق حوار معين باستخدام `id` الخاص به. يمكنك تحديث `dialogStack` لإزالة الحوار بناءً على `id`.
+
+```javascript
+closeDialog(dialogId) {
+  const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+  if (dialogIndex !== -1) {
+    this.dialogStack.splice(dialogIndex, 1);
+  }
+}
+```
+
+### 3. **إغلاق الحوارات الفرعية عند إغلاق الحوار الرئيسي**:
+عند إغلاق الحوار الرئيسي، يمكنك إغلاق جميع الحوارات الفرعية المرتبطة به.
+
+```javascript
+closeDialog(dialogId) {
+  const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+  if (dialogIndex !== -1) {
+    const dialogToClose = this.dialogStack[dialogIndex];
+    
+    // إغلاق الحوارات الفرعية
+    this.dialogStack = this.dialogStack.filter(dialog => dialog.parentId !== dialogToClose.id);
+    
+    // إغلاق الحوار الرئيسي
+    this.dialogStack.splice(dialogIndex, 1);
+  }
+}
+```
+
+### 4. **إدارة حالة الحوارات**:
+إذا كنت ترغب في تحديث حالة الحوار مثل إخفائه مؤقتًا أو إعادته إلى الخلفية، يمكنك إضافة حالة (`status`) لكل حوار.
+
+```javascript
+openDialog(url, name, customClass = '') {
+  const dialogId = `dialog-${Date.now()}-${Math.random()}`;
+
+  const dialogConfig = {
+    id: dialogId,
+    url,
+    name,
+    show: true,
+    customClass,
+    parentId: this.dialogStack.length > 0 ? this.dialogStack[this.dialogStack.length - 1].id : null,
+    status: 'active'  // يمكن أن تكون 'minimized' أو 'hidden'
+  };
+
+  this.dialogStack.push(dialogConfig);
+
+  this.$nextTick(() => {
+    this.checkContentReady(this.dialogStack.length - 1);
+  });
+},
+```
+
+### 5. **تكديس الحوارات (Dialog Stacking)**:
+إذا كنت تريد التحكم في الحوارات المتداخلة بشكل دقيق بحيث يتم عرضها في شكل هرمي أو حسب الأولوية، يمكنك استخدام حاوية (`container`) داخل `dialogStack` تمثل الحوارات المتداخلة.
+
+```javascript
+const dialogConfig = {
+  id: dialogId,
+  url,
+  name,
+  show: true,
+  customClass,
+  parentId: this.dialogStack.length > 0 ? this.dialogStack[this.dialogStack.length - 1].id : null,
+  stackLevel: this.dialogStack.length + 1  // مستوى التكديس
+};
+```
+
+### 6. **إدارة المكدس بالاستجابة للأحداث**:
+يمكنك استخدام الأحداث (`events`) للتحكم في المكدس بشكل ديناميكي، مثل تغيير ترتيب الحوارات بناءً على التفاعل مع المستخدم.
+
+```javascript
+this.$on('dialog-moved', dialogId => {
+  const dialogIndex = this.dialogStack.findIndex(dialog => dialog.id === dialogId);
+  if (dialogIndex !== -1) {
+    const dialog = this.dialogStack.splice(dialogIndex, 1)[0];
+    this.dialogStack.push(dialog);
+  }
+});
+```
+
+### 7. **الاحتفاظ بالحوار النشط**:
+يمكنك تتبع الحوار النشط حاليًا وإدارته بطريقة أكثر تنظيمًا.
+
+```javascript
+setActiveDialog(dialogId) {
+  this.dialogStack.forEach(dialog => {
+    dialog.active = dialog.id === dialogId;
+  });
+}
+```
+
+باستخدام هذه الأساليب المتقدمة، يمكنك إدارة `dialogStack` بشكل أكثر فعالية، مما يسمح لك ببناء واجهة مستخدم معقدة مع دعم للحوارات المتداخلة والتحكم الكامل في ترتيبها وسلوكها.
