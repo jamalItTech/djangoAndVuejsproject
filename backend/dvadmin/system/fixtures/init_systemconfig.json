@@ -1,0 +1,216 @@
+[
+    {
+        "parent": null,
+        "title": "التكوين الأساسي",
+        "key": "base",
+        "value": null,
+        "sort": 0,
+        "status": true,
+        "data_options": null,
+        "form_item_type": 0,
+        "rule": null,
+        "placeholder": null,
+        "setting": null,
+        "children": [
+            {
+                "parent": 10,
+                "title": "افتح رمز التحقق",
+                "key": "captcha_state",
+                "value": true,
+                "sort": 1,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 9,
+                "rule": [
+                    {
+                        "message": "يجب أن يكون عنصر الحديد فارغًا",
+                        "required": true
+                    }
+                ],
+                "placeholder": "يختار",
+                "setting": null,
+                "children": []
+            },
+            {
+                "parent": 10,
+                "title": "قم بإنشاء كلمة المرور الافتراضية للمستخدم",
+                "key": "default_password",
+                "value": "admin123456",
+                "sort": 2,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 0,
+                "rule": [
+                    {
+                        "message": "يجب أن يكون عنصر الحديد فارغًا",
+                        "required": true
+                    }
+                ],
+                "placeholder": "الرجاء إدخال كلمة المرور الافتراضية",
+                "setting": null,
+                "children": []
+            },
+            {
+                "parent": 10,
+                "title": "قم بتشغيل تسجيل الدخول إلى نقطة واحدة",
+                "key": "single_login",
+                "value": false,
+                "sort": 1,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 9,
+                "rule": [
+                    {
+                        "message": "يجب أن يكون عنصر الحديد فارغًا",
+                        "required": true
+                    }
+                ],
+                "placeholder": "يختار",
+                "setting": null,
+                "children": []
+            }
+        ]
+    },
+    {
+        "parent": null,
+        "title": "تكوين صفحة تسجيل الدخول",
+        "key": "login",
+        "value": null,
+        "sort": 1,
+        "status": true,
+        "data_options": null,
+        "form_item_type": 0,
+        "rule": null,
+        "placeholder": null,
+        "setting": null,
+        "children": [
+            {
+                "parent": 1,
+                "title": "اسم الموقع",
+                "key": "site_name",
+                "value": "نظام إدارة خلفية المؤسسة",
+                "sort": 1,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 0,
+                "rule": [
+                    {
+                        "message": "يجب أن يكون عنصر الحديد فارغًا",
+                        "required": true
+                    }
+                ],
+                "placeholder": "请输入اسم الموقع",
+                "setting": null,
+                "children": []
+            },
+            {
+                "parent": 1,
+                "title": "موقع تسجيل الدخولlogo",
+                "key": "site_logo",
+                "value": null,
+                "sort": 2,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 7,
+                "rule": [],
+                "placeholder": "يرجى تحميل الموقعlogo",
+                "setting": null,
+                "children": []
+            },
+            {
+                "parent": 1,
+                "title": "خريطة خلفية صفحة تسجيل الدخول",
+                "key": "login_background",
+                "value": null,
+                "sort": 3,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 7,
+                "rule": [],
+                "placeholder": "يرجى تحميل صفحة خلفية تسجيل الدخول",
+                "setting": null,
+                "children": []
+            },
+            {
+                "parent": 1,
+                "title": "معلومات حقوق الطبع والنشر",
+                "key": "copyright",
+                "value": "2021-2022 django-vue-admin.com جميع الحقوق محفوظة",
+                "sort": 4,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 0,
+                "rule": [
+                    {
+                        "message": "يجب أن يكون عنصر الحديد فارغًا",
+                        "required": true
+                    }
+                ],
+                "placeholder": "请输入معلومات حقوق الطبع والنشر",
+                "setting": null,
+                "children": []
+            },
+            {
+                "parent": 1,
+                "title": "معلومات تقديم",
+                "key": "keep_record",
+                "value": "جينICPيحضر18005113رقم-3",
+                "sort": 5,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 0,
+                "rule": [
+                    {
+                        "message": "يجب أن يكون عنصر الحديد فارغًا",
+                        "required": true
+                    }
+                ],
+                "placeholder": "请输入معلومات تقديم",
+                "setting": null,
+                "children": []
+            },
+            {
+                "parent": 1,
+                "title": "مساعدة",
+                "key": "help_url",
+                "value": "https://django-vue-admin.com",
+                "sort": 6,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 0,
+                "rule": "",
+                "placeholder": "الرجاء إدخال معلومات المساعدة",
+                "setting": null,
+                "children": []
+            },
+            {
+                "parent": 1,
+                "title": "رابط الخصوصية",
+                "key": "privacy_url",
+                "value": "#",
+                "sort": 7,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 0,
+                "rule": [],
+                "placeholder": "请填写رابط الخصوصية",
+                "setting": null,
+                "children": []
+            },
+            {
+                "parent": 1,
+                "title": "رابط البند",
+                "key": "clause_url",
+                "value": "#",
+                "sort": 8,
+                "status": true,
+                "data_options": null,
+                "form_item_type": 0,
+                "rule": [],
+                "placeholder": "请输入رابط البند",
+                "setting": null,
+                "children": []
+            }
+        ]
+    }
+]

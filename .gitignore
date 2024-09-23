@@ -1,0 +1,6 @@
+/backend/venv
+/backend/.idea
+.idea
+web/node_modules/
+.history/
+.vscode/

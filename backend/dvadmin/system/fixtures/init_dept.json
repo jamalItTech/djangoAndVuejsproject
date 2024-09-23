@@ -1,0 +1,36 @@
+[
+    {
+        "name": "DVAdminفريق",
+        "key": "dvadmin",
+        "sort": 1,
+        "owner": "",
+        "phone": "",
+        "email": "",
+        "status": true,
+        "parent": null,
+        "children": [
+            {
+                "name": "قسم العمليات",
+                "key": "",
+                "sort": 2,
+                "owner": "",
+                "phone": "",
+                "email": "",
+                "status": true,
+                "parent": 1,
+                "children": []
+            },
+            {
+                "name": "القسم الفني",
+                "key": "technology",
+                "sort": 1,
+                "owner": "",
+                "phone": "",
+                "email": "",
+                "status": true,
+                "parent": 3,
+                "children": []
+            }
+        ]
+    }
+]

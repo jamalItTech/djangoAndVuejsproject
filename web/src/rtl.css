@@ -1,0 +1,10 @@
+/* اتجاه النصوص من اليمين لليسار */
+html, body {
+    direction: rtl;
+    text-align: right;
+}
+
+/* تأكد من أن جميع العناصر تدعم RTL */
+* {
+    direction: rtl;
+}

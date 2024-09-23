@@ -1,0 +1,11 @@
+{
+    "_element": "ar",
+    "_name": "العربية",
+    "localeChange": {
+      "message": "اللغة الحالية: {{ localeName }} [ {{ localeCode }} ]",
+      "previewMessage": "اللغة الحالية: {{ localeName }} [ {{ localeCode }} ]<br/>فقط وظيفة التبديل مقدمة، ولا توجد بيانات لغوية محددة.",
+      "documentationMessage": "مرجع الوثائق: <a class='el-link el-link--primary is-underline' target='_blank' href='https://d2.pub/ar/doc/d2-admin/locales'>《التدويل | D2Admin》</a>",
+      "title": "تغيير اللغة"
+    }
+  }
+  

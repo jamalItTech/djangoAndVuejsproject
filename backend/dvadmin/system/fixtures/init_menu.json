@@ -1,0 +1,678 @@
+[
+  {
+    "name": "إدارة النظام",
+    "icon": "cog",
+    "sort": 1,
+    "is_link": false,
+    "is_catalog": true,
+    "web_path": "",
+    "component": "",
+    "component_name": "",
+    "status": true,
+    "cache": false,
+    "visible": true,
+    "parent": null,
+    "children": [
+      {
+        "name": "إدارة القائمة",
+        "icon": "navicon",
+        "sort": 1,
+        "is_link": false,
+        "is_catalog": false,
+        "web_path": "/menu",
+        "component": "system/menu",
+        "component_name": "menu",
+        "status": true,
+        "cache": false,
+        "visible": true,
+        "parent": 277,
+        "children": [],
+        "menu_button": [
+          {
+            "name": "استفسار",
+            "value": "Search",
+            "api": "/api/system/menu/",
+            "method": 0
+          },
+          {
+            "name": "التفاصيل",
+            "value": "Retrieve",
+            "api": "/api/system/menu/{id}/",
+            "method": 0
+          },
+          {
+            "name": "يزيد",
+            "value": "Create",
+            "api": "/api/system/menu/",
+            "method": 1
+          },
+          {
+            "name": "يحرر",
+            "value": "Update",
+            "api": "/api/system/menu/{id}/",
+            "method": 2
+          },
+          {
+            "name": "يمسح",
+            "value": "Delete",
+            "api": "/api/system/menu/{id}/",
+            "method": 3
+          }
+        ]
+      },
+      {
+        "name": "زر القائمة",
+        "icon": "dot-circle-o",
+        "sort": 2,
+        "is_link": false,
+        "is_catalog": false,
+        "web_path": "/menuButton",
+        "component": "system/menuButton/index",
+        "component_name": "menuButton",
+        "status": true,
+        "cache": false,
+        "visible": false,
+        "parent": 277,
+        "children": [],
+        "menu_button": [
+          {
+            "name": "استفسار",
+            "value": "Search",
+            "api": "/api/system/menu_button/",
+            "method": 0
+          },
+          {
+            "name": "يزيد",
+            "value": "Create",
+            "api": "/api/system/menu_button/",
+            "method": 1
+          },
+          {
+            "name": "يحرر",
+            "value": "Update",
+            "api": "/api/system/menu_button/{id}/",
+            "method": 2
+          },
+          {
+            "name": "يمسح",
+            "value": "Delete",
+            "api": "/api/system/menu_button/{id}/",
+            "method": 3
+          }
+        ]
+      },
+      {
+        "name": "إدارة القسم",
+        "icon": "bank",
+        "sort": 3,
+        "is_link": false,
+        "is_catalog": false,
+        "web_path": "/dept",
+        "component": "system/dept/index",
+        "component_name": "dept",
+        "status": true,
+        "cache": false,
+        "visible": true,
+        "parent": 277,
+        "children": [],
+        "menu_button": [
+          {
+            "name": "استفسار",
+            "value": "Search",
+            "api": "/api/system/dept/",
+            "method": 0
+          },
+          {
+            "name": "التفاصيل",
+            "value": "Retrieve",
+            "api": "/api/system/dept/{id}/",
+            "method": 0
+          },
+          {
+            "name": "يزيد",
+            "value": "Create",
+            "api": "/api/system/dept/",
+            "method": 1
+          },
+          {
+            "name": "يحرر",
+            "value": "Update",
+            "api": "/api/system/dept/{id}/",
+            "method": 2
+          },
+          {
+            "name": "يمسح",
+            "value": "Delete",
+            "api": "/api/system/dept/{id}/",
+            "method": 3
+          }
+        ]
+      },
+      {
+        "name": "إدارة الأدوار",
+        "icon": "address-book",
+        "sort": 4,
+        "is_link": false,
+        "is_catalog": false,
+        "web_path": "/role",
+        "component": "system/role/index",
+        "component_name": "role",
+        "status": true,
+        "cache": false,
+        "visible": true,
+        "parent": 277,
+        "children": [],
+        "menu_button": [
+          {
+            "name": "استفسار",
+            "value": "Search",
+            "api": "/api/system/role/",
+            "method": 0
+          },
+          {
+            "name": "التفاصيل",
+            "value": "Retrieve",
+            "api": "/api/system/role/{id}/",
+            "method": 0
+          },
+          {
+            "name": "يزيد",
+            "value": "Create",
+            "api": "/api/system/role/",
+            "method": 1
+          },
+          {
+            "name": "يحرر",
+            "value": "Update",
+            "api": "/api/system/role/{id}/",
+            "method": 2
+          },
+          {
+            "name": "يحفظ",
+            "value": "Save",
+            "api": "/api/system/role/{id}/",
+            "method": 2
+          },
+          {
+            "name": "يمسح",
+            "value": "Delete",
+            "api": "/api/system/role/{id}/",
+            "method": 3
+          }
+        ]
+      },
+      {
+        "name": "إدارة المستخدم",
+        "icon": "users",
+        "sort": 6,
+        "is_link": false,
+        "is_catalog": false,
+        "web_path": "/user",
+        "component": "system/user/index",
+        "component_name": "user",
+        "status": true,
+        "cache": false,
+        "visible": true,
+        "parent": 277,
+        "children": [],
+        "menu_button": [
+          {
+            "name": "استفسار",
+            "value": "Search",
+            "api": "/api/system/user/",
+            "method": 0
+          },
+          {
+            "name": "التفاصيل",
+            "value": "Retrieve",
+            "api": "/api/system/user/{id}/",
+            "method": 0
+          },
+          {
+            "name": "يزيد",
+            "value": "Create",
+            "api": "/api/system/user/",
+            "method": 1
+          },
+          {
+            "name": "يصدّر",
+            "value": "Export",
+            "api": "/api/system/user/export/",
+            "method": 1
+          },
+          {
+            "name": "يستورد",
+            "value": "Import",
+            "api": "/api/system/user/import/",
+            "method": 1
+          },
+          {
+            "name": "يحرر",
+            "value": "Update",
+            "api": "/api/system/user/{id}/",
+            "method": 2
+          },
+          {
+            "name": "سداد كلمة المرور",
+            "value": "ResetPassword",
+            "api": "/api/system/user/{id}/reset_password/",
+            "method": 2
+          },
+          {
+            "name": "إعادة تعيين كلمة المرور",
+            "value": "DefaultPassword",
+            "api": "/api/system/user/{id}/reset_to_default_password/",
+            "method": 2
+          },
+          {
+            "name": "يمسح",
+            "value": "Delete",
+            "api": "/api/system/user/{id}/",
+            "method": 3
+          }
+        ]
+      },
+      {
+        "name": "مركز الرسائل",
+        "icon": "bullhorn",
+        "sort": 7,
+        "is_link": false,
+        "is_catalog": false,
+        "web_path": "/messageCenter",
+        "component": "system/messageCenter/index",
+        "component_name": "messageCenter",
+        "status": true,
+        "cache": false,
+        "visible": true,
+        "parent": 277,
+        "children": [],
+        "menu_button": [
+          {
+            "name": "استفسار",
+            "value": "Search",
+            "api": "/api/system/message_center/",
+            "method": 0
+          },
+          {
+            "name": "التفاصيل",
+            "value": "Retrieve",
+            "api": "/api/system/message_center/{id}/",
+            "method": 0
+          },
+          {
+            "name": "يزيد",
+            "value": "Create",
+            "api": "/api/system/message_center/",
+            "method": 1
+          },
+          {
+            "name": "يحرر",
+            "value": "Update",
+            "api": "/api/system/message_center/{id}/",
+            "method": 2
+          },
+          {
+            "name": "يمسح",
+            "value": "Delete",
+            "api": "/api/system/menu/{id}/",
+            "method": 3
+          }
+        ]
+      },
+      {
+        "name": "قائمة تبييض الواجهة",
+        "icon": "compass",
+        "sort": 8,
+        "is_link": false,
+        "is_catalog": false,
+        "web_path": "/apiWhiteList",
+        "component": "system/whiteList/index",
+        "component_name": "whiteList",
+        "status": true,
+        "cache": false,
+        "visible": true,
+        "parent": 277,
+        "children": [],
+        "menu_button": [
+          {
+            "name": "استفسار",
+            "value": "Search",
+            "api": "/api/system/api_white_list/",
+            "method": 0
+          },
+          {
+            "name": "التفاصيل",
+            "value": "Retrieve",
+            "api": "/api/system/api_white_list/{id}/",
+            "method": 0
+          },
+          {
+            "name": "يزيد",
+            "value": "Create",
+            "api": "/api/system/api_white_list/",
+            "method": 1
+          },
+          {
+            "name": "يحرر",
+            "value": "Update",
+            "api": "/api/system/api_white_list/{id}/",
+            "method": 2
+          },
+          {
+            "name": "يمسح",
+            "value": "Delete",
+            "api": "/api/system/api_white_list/{id}/",
+            "method": 3
+          }
+        ]
+      },
+      {
+        "name": "التكوين التقليدي",
+        "icon": "cogs",
+        "sort": 9,
+        "is_link": false,
+        "is_catalog": true,
+        "web_path": "",
+        "component": "",
+        "component_name": "",
+        "status": true,
+        "cache": false,
+        "visible": true,
+        "parent": null,
+        "children": [
+          {
+            "name": "تكوين النظام",
+            "icon": "desktop",
+            "sort": 0,
+            "is_link": false,
+            "is_catalog": false,
+            "web_path": "/config",
+            "component": "system/config/index",
+            "component_name": "config",
+            "status": true,
+            "cache": false,
+            "visible": true,
+            "parent": 285,
+            "children": [],
+            "menu_button": [
+              {
+                "name": "استفسار",
+                "value": "Search",
+                "api": "/api/system/system_config/",
+                "method": 0
+              },
+              {
+                "name": "التفاصيل",
+                "value": "Retrieve",
+                "api": "/api/system/system_config/{id}/",
+                "method": 0
+              },
+              {
+                "name": "يزيد",
+                "value": "Create",
+                "api": "/api/system/system_config/",
+                "method": 1
+              },
+              {
+                "name": "يحرر",
+                "value": "Update",
+                "api": "/api/system/system_config/{id}/",
+                "method": 2
+              },
+              {
+                "name": "يمسح",
+                "value": "Delete",
+                "api": "/api/system/system_config/{id}/",
+                "method": 3
+              }
+            ]
+          },
+          {
+            "name": "إدارة القاموس",
+            "icon": "book",
+            "sort": 1,
+            "is_link": false,
+            "is_catalog": false,
+            "web_path": "/dictionary",
+            "component": "system/dictionary/index",
+            "component_name": "dictionary",
+            "status": true,
+            "cache": false,
+            "visible": true,
+            "parent": 285,
+            "children": [],
+            "menu_button": [
+              {
+                "name": "استفسار",
+                "value": "Search",
+                "api": "/api/system/dictionary/",
+                "method": 0
+              },
+              {
+                "name": "التفاصيل",
+                "value": "Retrieve",
+                "api": "/api/system/dictionary/{id}/",
+                "method": 0
+              },
+              {
+                "name": "يزيد",
+                "value": "Create",
+                "api": "/api/system/dictionary/",
+                "method": 1
+              },
+              {
+                "name": "يحرر",
+                "value": "Update",
+                "api": "/api/system/dictionary/{id}/",
+                "method": 2
+              },
+              {
+                "name": "يمسح",
+                "value": "Delete",
+                "api": "/api/system/dictionary/{id}/",
+                "method": 3
+              }
+            ]
+          },
+          {
+            "name": "الإدارة الإقليمية",
+            "icon": "map",
+            "sort": 2,
+            "is_link": false,
+            "is_catalog": false,
+            "web_path": "/areas",
+            "component": "system/areas/index",
+            "component_name": "areas",
+            "status": true,
+            "cache": false,
+            "visible": true,
+            "parent": 285,
+            "children": [],
+            "menu_button": [
+              {
+                "name": "استفسار",
+                "value": "Search",
+                "api": "/api/system/area/",
+                "method": 0
+              },
+              {
+                "name": "التفاصيل",
+                "value": "Retrieve",
+                "api": "/api/system/area/{id}/",
+                "method": 0
+              },
+              {
+                "name": "يزيد",
+                "value": "Create",
+                "api": "/api/system/area/",
+                "method": 1
+              },
+              {
+                "name": "يحرر",
+                "value": "Update",
+                "api": "/api/system/area/{id}/",
+                "method": 2
+              },
+              {
+                "name": "يمسح",
+                "value": "Delete",
+                "api": "/api/system/area/{id}/",
+                "method": 3
+              }
+            ]
+          },
+          {
+            "name": "إدارة المرفقات",
+            "icon": "file-text-o",
+            "sort": 3,
+            "is_link": false,
+            "is_catalog": false,
+            "web_path": "/file",
+            "component": "system/fileList/index",
+            "component_name": "file",
+            "status": true,
+            "cache": false,
+            "visible": true,
+            "parent": 285,
+            "children": [],
+            "menu_button": [
+              {
+                "name": "التفاصيل",
+                "value": "Retrieve",
+                "api": "/api/system/file/{id}/",
+                "method": 0
+              },
+              {
+                "name": "استفسار",
+                "value": "Search",
+                "api": "/api/system/file/",
+                "method": 0
+              },
+              {
+                "name": "يحرر",
+                "value": "Update",
+                "api": "/api/system/file/{id}/",
+                "method": 1
+              },
+              {
+                "name": "يمسح",
+                "value": "Delete",
+                "api": "/api/system/file/{id}/",
+                "method": 3
+              }
+            ]
+          }
+        ],
+        "menu_button": []
+      },
+      {
+        "name": "إدارة السجل",
+        "icon": "book",
+        "sort": 10,
+        "is_link": false,
+        "is_catalog": true,
+        "web_path": "",
+        "component": "",
+        "component_name": "",
+        "status": true,
+        "cache": false,
+        "visible": true,
+        "parent": null,
+        "children": [
+          {
+            "name": "سجل تسجيل الدخول",
+            "icon": "file-text",
+            "sort": 1,
+            "is_link": false,
+            "is_catalog": false,
+            "web_path": "/loginLog",
+            "component": "system/log/loginLog/index",
+            "component_name": "loginLog",
+            "status": true,
+            "cache": false,
+            "visible": true,
+            "parent": 290,
+            "children": [],
+            "menu_button": [
+              {
+                "name": "استفسار",
+                "value": "Search",
+                "api": "/api/system/login_log/",
+                "method": 0
+              },
+              {
+                "name": "التفاصيل",
+                "value": "Retrieve",
+                "api": "/api/system/login_log/{id}/",
+                "method": 0
+              }
+            ]
+          },
+          {
+            "name": "سجل التشغيل",
+            "icon": "file-code-o",
+            "sort": 2,
+            "is_link": false,
+            "is_catalog": false,
+            "web_path": "/operationLog",
+            "component": "system/log/operationLog/index",
+            "component_name": "operationLog",
+            "status": true,
+            "cache": false,
+            "visible": true,
+            "parent": 290,
+            "children": [],
+            "menu_button": [
+              {
+                "name": "التفاصيل",
+                "value": "Retrieve",
+                "api": "/api/system/operation_log/{id}/",
+                "method": 0
+              },
+              {
+                "name": "استفسار",
+                "value": "Search",
+                "api": "/api/system/operation_log/",
+                "method": 0
+              }
+            ]
+          },
+          {
+            "name": "سجل الأخطاء الأجنبية",
+            "icon": "bug",
+            "sort": 4,
+            "is_link": false,
+            "is_catalog": false,
+            "web_path": "/frontendLog",
+            "component": "system/log/frontendLog/index",
+            "component_name": "frontendLog",
+            "status": true,
+            "cache": false,
+            "visible": true,
+            "parent": 290,
+            "children": [],
+            "menu_button": []
+          }
+        ],
+        "menu_button": []
+      }
+    ],
+    "menu_button": []
+  },
+  {
+    "name": "DVAdminالموقع الرسمي",
+    "icon": "external-link",
+    "sort": 4,
+    "is_link": true,
+    "is_catalog": false,
+    "web_path": "https://django-vue-admin.com",
+    "component": "",
+    "component_name": "",
+    "status": false,
+    "cache": false,
+    "visible": true,
+    "parent": null,
+    "children": [],
+    "menu_button": []
+  }
+]
